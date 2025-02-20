@@ -39,3 +39,12 @@ console.log(car.color);
 // Deleting a property
 delete car.mileage;
 console.log(car.mileage);
+
+function createFlashCard(question, answer) {
+  this.question = question;
+  this.answer = answer;
+}
+
+const result = new createFlashCard("What is the capital of France?", "Paris");
+console.log(result);
+console.log(result.question, result.answer);
