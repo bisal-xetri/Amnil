@@ -14,7 +14,7 @@ There are multiple ways to create objects in JavaScript:
 const person = {
   name: "Bishal",
   age: 22,
-  city: "New York",
+  city: "Kathmandu",
 };
 console.log(person.name); // Output: Bishal
 ```
@@ -60,8 +60,8 @@ You can access object properties using:
 - **Bracket Notation**: `object["property"]`
 
 ```javascript
-console.log(person.name); // Output: John
-console.log(person["age"]); // Output: 30
+console.log(person.name); // Output: Bishal
+console.log(person["age"]); // Output: 22
 ```
 
 ## Adding and Updating Properties
