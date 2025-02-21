@@ -1,10 +1,13 @@
 //Using Object Literal
 const person = {
   name: "Bishal",
+  "full Name": "Bishal Dhakal",
   age: 22,
   city: "Kathmandu",
 };
 console.log(person.name);
+// console.log(person.full name)
+console.log(person["full Name"]);
 
 //Using new Object()
 const car = new Object();
