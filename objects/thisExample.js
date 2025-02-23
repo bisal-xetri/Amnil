@@ -8,3 +8,13 @@ let person = {
 };
 
 person.greet();
+
+function printName() {
+  this.name = "Bishal";
+  const print = () => {
+    console.log(this.name);
+  };
+  print();
+}
+
+const obj = new printName();
