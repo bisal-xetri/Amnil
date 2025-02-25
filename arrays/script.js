@@ -1900,8 +1900,11 @@ console.log(typeof finds);
 // console.log(`Result of find: ${finds}`);
 console.log("Result of find", finds);
 
-const sortedProducts = products.sort((a, b) => a.title - b.title);
+const sortedProducts = products.sort((a, b) => a.price - b.price);
 console.log("sorted product based on price:", sortedProducts);
+
+const stringSort = products.sort((a, b) => a.title.localeCompare(b.title));
+console.log("Sorted Product based on title: ", stringSort);
 
 //Check if all products are above a certain price:
 const allExpensive = products.every((product) => product.price > 10);
