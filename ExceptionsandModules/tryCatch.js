@@ -24,12 +24,15 @@ try {
 function divide(a, b) {
   try {
     if (b === 0) {
+      // throw "Division By zero is not allowed.";
+      //throw {message:"Division by zero is not allowed",status:false"}
       throw new Error("Division by zero is not allowed!");
     }
     console.log(a / b);
   } catch (error) {
     console.log("Error:", error.message);
+    // console.log("Error:", error);
   }
 }
 
-divide(10, 2);
+divide(10, 0);
