@@ -18,46 +18,66 @@
   >
     <main class="min-h-screen w-full flex justify-center items-center">
       <div class="h-100 w-80 bg-slate-200 rounded-md shadow-md text-black">
-        <h1 class="text-center text-2xl font-bold px-4 pt-8">
+        <h1 class="text-center text-2xl font-bold px-4 pt-5">
           Currency Converter
         </h1>
-        <form action="" class="p-10">
+        <form action="" class="p-5">
+          <label class="text-[14px]" for="">Date:</label>
+          <input
+            type="date"
+            name=""
+            max=""
+            id="date"
+            placeholder="Enter amount"
+            class="border border-black text-black w-full p-2 rounded-md"
+          />
           <label class="text-[14px]" for="">Enter Amount:</label>
           <input
             type="number"
             min="1"
             name=""
-            id=""
+            id="amount"
             placeholder="Enter amount"
             class="border border-black text-black w-full p-2 rounded-md"
           />
-          <div class="mt-12 flex justify-between items-center">
+          <div class="mt-5 flex justify-between items-center">
             <div>
               <p class="text-[14px]">Form</p>
-              <div class="flex border border-slate-400 px-2 py-1 rounded-md">
+              <div
+                class="flex border border-slate-400 px-2 py-1 rounded-md from"
+              >
                 <img
                   src="https://flagsapi.com/US/flat/64.png"
                   class="h-6 w-6"
                 />
-                <select name="from"></select>
+                <select
+                  class="outline-none"
+                  name="from"
+                  id="fromDropdown"
+                ></select>
               </div>
             </div>
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            <i class="fa-solid fa-arrow-right-arrow-left mt-6"></i>
             <div>
               <p class="text-[14px]">To</p>
-              <div class="flex border border-slate-400 px-2 py-1 rounded-md">
+              <div class="flex border border-slate-400 px-2 py-1 rounded-md to">
                 <img
                   src="https://flagsapi.com/NP/flat/64.png"
                   class="h-6 w-6"
                 />
 
-                <select name="to"></select>
+                <select
+                  class="outline-none"
+                  name="to"
+                  id="fromDropdown"
+                ></select>
               </div>
             </div>
           </div>
           <div class="mt-5">1USD = 110NPR</div>
           <button
             class="bg-purple-400 px-2 py-1 text-white hover:bg-purple-500 cursor-pointer rounded-md w-full mt-6"
+            id="btn"
           >
             Get Exchange Rate
           </button>
@@ -93,5 +113,7 @@
         </table>
       </div>
     </section>
+    <script src="countryCode.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
