@@ -38,7 +38,7 @@ const updateFlag = (element) => {
   console.log(countryCode);
 };
 
-btn.addEventListener("click", (e) => {
+btn.addEventListener("click", async (e) => {
   e.preventDefault();
   let amount = money.value;
 
@@ -62,7 +62,64 @@ btn.addEventListener("click", (e) => {
   }
   console.log(from.value, to.value);
 
-  // Replace with your actual base URL
   const URL = `${BASE_URL}from=${validDate}&to=${validDate}&per_page=20&page=1`;
-  console.log(URL);
+  let response = await fetch(URL);
+  let result = await response.json();
+  let rates = result.data.payload[0].rates;
+  // for (let countryCode of rates) {
+  //   console.log(countryCode.sell);
+  // }
+  const countryCode = rates.map((country) => country.currency.iso3);
+  console.log(countryCode);
+  const sellRate = rates.map((rate) => rate.sell);
+  console.log(sellRate);
+
+  const combinedObject = countryCode.reduce((obj, key, index) => {
+    obj[key] = sellRate[index];
+    return obj;
+  }, {});
+
+  console.log(combinedObject);
+  // console.log(rate.payload[0].rates[0].sell);
+  console.log(rates);
 });
+
+// btn.addEventListener("click", async (e) => {
+//   e.preventDefault();
+//   let amount = money.value;
+
+//   const today = new Date().toISOString().split("T")[0];
+//   date.setAttribute("max", today);
+
+//   let dateValue = date.value || today;
+//   let validDate = dateValue.split("T")[0];
+
+//   if (amount === "" || amount < 1) {
+//     amount = 1;
+//     money.value = 1;
+//   }
+//   try {
+//     const rates = await fetchExchangeRates(validDate);
+//     const exchangeRate = rates.find(rate => rate.currency.iso3 === to.value);
+//     if (exchangeRate) {
+//       let convertedAmount = (amount * exchangeRate.sell).toFixed(2);
+//       rateDisplay.innerText = `${amount} ${from.value} = ${convertedAmount} ${to.value}`;
+//     } else {
+//       rateDisplay.innerText = "Exchange rate not available.";
+//     }
+//   } catch (error) {
+//     rateDisplay.innerText = "Failed to fetch exchange rates. Please try again later.";
+//   }
+// });
+// //fetch Api
+// const fetchExchangeRates = async (date) => {
+//   const URL = `${BASE_URL}from=${date}&to=${date}&per_page=20&page=1`;
+//   try {
+//     let response = await fetch(URL);
+//     let result = await response.json();
+//     return result.data.payload[0].rates;
+//   } catch (error) {
+//     console.error("Error fetching exchange rates:", error);
+//     throw new Error("Failed to fetch exchange rates");
+//   }
+// };
