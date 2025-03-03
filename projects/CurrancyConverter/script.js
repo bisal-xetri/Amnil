@@ -4,122 +4,144 @@ const dropDown = document.querySelectorAll("#fromDropdown");
 const btn = document.querySelector("#btn");
 const from = document.querySelector(".from select");
 const to = document.querySelector(".to select");
-
-// const customDate = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD' format
+const msg = document.querySelector(".msg");
 
 const BASE_URL = `https://www.nrb.org.np/api/forex/v1/rates?`;
 
-for (let select of dropDown) {
-  console.log(select);
-  for (currCode in countryList) {
-    let newOption = document.createElement("option");
-    newOption.classList.add("text-[14px]");
-    newOption.innerText = currCode;
-    newOption.value = currCode;
-    if (select.name === "from" && currCode === "USD") {
-      newOption.selected = "selected";
-    } else if (select.name === "to" && currCode === "NPR") {
-      newOption.selected = "selected";
-    }
-    select.append(newOption);
-  }
-  select.addEventListener("change", (element) => {
-    updateFlag(element.target);
-  });
-}
-
-//update flag
-const updateFlag = (element) => {
-  let currCode = element.value;
-  let countryCode = countryList[currCode];
-  let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
-  let img = element.parentElement.querySelector("img");
-  img.src = newSrc;
-  console.log(countryCode);
+// Fetch exchange rate data from the API
+const fetchExchangeRateData = async (dateValue) => {
+  const URL = `${BASE_URL}from=${dateValue}&to=${dateValue}&per_page=20&page=1`;
+  let response = await fetch(URL);
+  let data = await response.json();
+  return data.data.payload[0].rates; // Return the rates array
 };
 
-btn.addEventListener("click", async (e) => {
-  e.preventDefault();
-  let amount = money.value;
-
-  // Ensure date input field's max attribute is set to today's date
+// Validate and return the selected date
+function validDate() {
   const today = new Date().toISOString().split("T")[0];
   date.setAttribute("max", today);
+  let newDate = date.value;
 
-  // Get and validate the date value
-  let dateValue = date.value;
-  if (dateValue > today) {
-    dateValue = today;
+  if (newDate > today || newDate === "") {
+    newDate = today;
     date.value = today;
   }
-  let validDate = dateValue.split("T")[0];
-  console.log(validDate);
+  return newDate;
+}
 
-  // Validate the amount value
-  if (amount === "" || amount < 1) {
-    amount = 1;
-    money.value = 1;
+// Function to populate dropdowns with currency options
+const populateDropdowns = async () => {
+  const data = await fetchExchangeRateData(validDate());
+  const countryCodes = data.map((rate) => rate.currency.iso3);
+
+  for (let select of dropDown) {
+    // Clear existing options
+    select.innerHTML = "";
+
+    for (let code of countryCodes) {
+      let newOption = document.createElement("option");
+      newOption.innerText = code;
+      newOption.value = code;
+      if (select.name === "from" && code === "USD") {
+        newOption.selected = "selected";
+      } else if (select.name === "to" && code === "INR") {
+        newOption.selected = "selected";
+      }
+      select.append(newOption);
+    }
+
+    // Add event listener to update flag when dropdown selection changes
+    select.addEventListener("change", (evt) => {
+      updateFlag(evt.target);
+    });
   }
-  console.log(from.value, to.value);
+};
 
-  const URL = `${BASE_URL}from=${validDate}&to=${validDate}&per_page=20&page=1`;
-  let response = await fetch(URL);
-  let result = await response.json();
-  let rates = result.data.payload[0].rates;
-  // for (let countryCode of rates) {
-  //   console.log(countryCode.sell);
-  // }
-  const countryCode = rates.map((country) => country.currency.iso3);
-  console.log(countryCode);
-  const sellRate = rates.map((rate) => rate.sell);
-  console.log(sellRate);
+// Function to update the flag image based on the selected currency
+const updateFlag = (element) => {
+  let currCode = element.value;
+  let countryCode = countryList[currCode]; // Get country code from mapping
+  if (countryCode) {
+    let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+    let img = element.parentElement.querySelector("img");
+    img.src = newSrc;
+  }
+};
 
-  const combinedObject = countryCode.reduce((obj, key, index) => {
-    obj[key] = sellRate[index];
-    return obj;
-  }, {});
+// Calculate the exchange rate between two currencies
+const calculateExchangeRate = async () => {
+  const amount = parseFloat(money.value);
+  if (isNaN(amount) || amount < 1) {
+    money.value = 1;
+    alert("Please enter a valid amount.");
+    return;
+  }
 
-  console.log(combinedObject);
-  // console.log(rate.payload[0].rates[0].sell);
-  console.log(rates);
+  const data = await fetchExchangeRateData(validDate());
+  const fromCurrency = from.value;
+  const toCurrency = to.value;
+
+  // Find the exchange rates for the selected currencies
+  const fromRate = data.find((rate) => rate.currency.iso3 === fromCurrency);
+  console.log(fromRate);
+  const toRate = data.find((rate) => rate.currency.iso3 === toCurrency);
+  console.log(toRate);
+
+  if (!fromRate || !toRate) {
+    msg.innerText = "Currency not found.";
+    return;
+  }
+
+  // Calculate the converted amount
+  const exchangeRate = toRate.buy / fromRate.buy;
+  const convertedAmount = (amount * exchangeRate).toFixed(2);
+
+  // Display the result
+  msg.innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+};
+const populateTable = async () => {
+  const dateValue = validDate();
+  const data = await fetchExchangeRateData(dateValue);
+  const tbody = document.getElementById("exchange-rates");
+
+  // Clear existing rows
+  tbody.innerHTML = "";
+
+  // Add a row for each currency
+  data.forEach((rate) => {
+    const currencyCode = rate.currency.iso3;
+    const countryCode = countryList[currencyCode] || "NP";
+    const flagUrl = `https://flagsapi.com/${countryCode}/flat/64.png`;
+
+    const row = document.createElement("tr");
+    row.classList.add("hover:bg-black");
+    row.innerHTML = `
+      <td class="border border-gray-300 text-center p-2 flex items-center">
+        <img src="${flagUrl}" class="h-6 w-6 mr-2" />
+        ${rate.currency.name}
+      </td>
+      <td class="border border-gray-300 text-center p-2">${rate.currency.unit}</td>
+      <td class="border border-gray-300 text-center p-2">${rate.buy}</td>
+      <td class="border border-gray-300 text-center p-2">${rate.sell}</td>
+    `;
+    tbody.appendChild(row);
+  });
+};
+
+// Event listener for the button
+btn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  await calculateExchangeRate();
 });
 
-// btn.addEventListener("click", async (e) => {
-//   e.preventDefault();
-//   let amount = money.value;
-
-//   const today = new Date().toISOString().split("T")[0];
-//   date.setAttribute("max", today);
-
-//   let dateValue = date.value || today;
-//   let validDate = dateValue.split("T")[0];
-
-//   if (amount === "" || amount < 1) {
-//     amount = 1;
-//     money.value = 1;
-//   }
-//   try {
-//     const rates = await fetchExchangeRates(validDate);
-//     const exchangeRate = rates.find(rate => rate.currency.iso3 === to.value);
-//     if (exchangeRate) {
-//       let convertedAmount = (amount * exchangeRate.sell).toFixed(2);
-//       rateDisplay.innerText = `${amount} ${from.value} = ${convertedAmount} ${to.value}`;
-//     } else {
-//       rateDisplay.innerText = "Exchange rate not available.";
-//     }
-//   } catch (error) {
-//     rateDisplay.innerText = "Failed to fetch exchange rates. Please try again later.";
-//   }
-// });
-// //fetch Api
-// const fetchExchangeRates = async (date) => {
-//   const URL = `${BASE_URL}from=${date}&to=${date}&per_page=20&page=1`;
-//   try {
-//     let response = await fetch(URL);
-//     let result = await response.json();
-//     return result.data.payload[0].rates;
-//   } catch (error) {
-//     console.error("Error fetching exchange rates:", error);
-//     throw new Error("Failed to fetch exchange rates");
-//   }
-// };
+// Initialize the app when the page loads
+window.addEventListener("load", () => {
+  const today = new Date().toISOString().split("T")[0];
+  date.value = today;
+  money.value = 1;
+  populateTable();
+  populateDropdowns();
+  calculateExchangeRate();
+  updateFlag(from); // Set initial flag for "from" dropdown
+  updateFlag(to); // Set initial flag for "to" dropdown
+});

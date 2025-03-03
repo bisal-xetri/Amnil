@@ -62,7 +62,7 @@
               <p class="text-[14px]">To</p>
               <div class="flex border border-slate-400 px-2 py-1 rounded-md to">
                 <img
-                  src="https://flagsapi.com/NP/flat/64.png"
+                  src="https://flagsapi.com/IN/flat/64.png"
                   class="h-6 w-6"
                 />
 
@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-          <div class="mt-5 msg">1USD = 110NPR</div>
+          <div class="mt-5 msg">1USD = 110INR</div>
           <button
             class="bg-purple-400 px-2 py-1 text-white hover:bg-purple-500 cursor-pointer rounded-md w-full mt-6"
             id="btn"
@@ -84,36 +84,25 @@
         </form>
       </div>
     </main>
-    <section class="w-screen flex justify-center items-center">
+    <section class="w-screen p-10">
       <div>
-        <h1 class="text-4xl font-bold mb-4">Foreign Exchange Rates</h1>
-        <table class="table-auto w-full border-collapse border border-gray-400">
+        <h1 class="text-4xl font-bold mb-4 text-center">
+          Foreign Exchange Rates
+        </h1>
+        <table class="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr>
-              <th class="border border-gray-400 p-2">Currency</th>
-              <th class="border border-gray-400 p-2">Unit</th>
-              <th class="border border-gray-400 p-2">Buy</th>
-              <th class="border border-gray-400 p-2">Sell</th>
+              <th class="border border-gray-300 p-2">Currency</th>
+              <th class="border border-gray-300 p-2">Unit</th>
+              <th class="border border-gray-300 p-2">Buy</th>
+              <th class="border border-gray-300 p-2">Sell</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-400 p-2 flex items-center">
-                <img
-                  src="https://flagsapi.com/NP/flat/64.png"
-                  class="h-6 w-6 mr-2"
-                />
-                Nepal
-              </td>
-              <td class="border border-gray-400 p-2">1</td>
-              <td class="border border-gray-400 p-2">190</td>
-              <td class="border border-gray-400 p-2">290</td>
-            </tr>
-          </tbody>
+          <tbody id="exchange-rates"></tbody>
         </table>
       </div>
     </section>
     <script src="countryCode.js"></script>
-    <script src="script2.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
