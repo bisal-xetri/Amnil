@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script nomodule src="script.js">
+      //if type="module" not supported by browser
+    </script>
+    <script type="module">
+      import {
+        position,
+        isStudent,
+        name as Name,
+        age,
+      } from "./modulesExample.js";
+      import message from "./modulesExample.js";
+      console.log(position, isStudent, Name, age);
+      console.log(message());
+    </script>
+  </body>
+</html>
