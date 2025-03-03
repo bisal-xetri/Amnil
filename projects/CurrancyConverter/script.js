@@ -42,7 +42,7 @@ const populateDropdowns = async () => {
       let newOption = document.createElement("option");
       newOption.innerText = code;
       newOption.value = code;
-      if (select.name === "from" && code === "USD") {
+      if (select.name === "from" && code === "NPR") {
         newOption.selected = "selected";
       } else if (select.name === "to" && code === "INR") {
         newOption.selected = "selected";
@@ -68,7 +68,6 @@ const updateFlag = (element) => {
   }
 };
 
-// Calculate the exchange rate between two currencies
 const calculateExchangeRate = async () => {
   const amount = parseFloat(money.value);
   if (isNaN(amount) || amount < 1) {
@@ -83,21 +82,21 @@ const calculateExchangeRate = async () => {
 
   // Find the exchange rates for the selected currencies
   const fromRate = data.find((rate) => rate.currency.iso3 === fromCurrency);
-  console.log(fromRate);
   const toRate = data.find((rate) => rate.currency.iso3 === toCurrency);
-  console.log(toRate);
 
   if (!fromRate || !toRate) {
     msg.innerText = "Currency not found.";
     return;
   }
 
-  // Calculate the converted amount
-  const exchangeRate = toRate.buy / fromRate.buy;
-  const convertedAmount = (amount * exchangeRate).toFixed(2);
+  const toUnit = toRate.currency.unit || 1; // Default to 1 if unit is not provided
+
+  const adjustedToRate = toRate.buy / toUnit; // Adjust for unit (e.g., INR is 100)
+
+  const convertedAmount = (amount * adjustedToRate).toFixed(2);
 
   // Display the result
-  msg.innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+  msg.innerText = `${amount} NPR  = ${convertedAmount} ${toCurrency}`;
 };
 const populateTable = async () => {
   const dateValue = validDate();

@@ -16,6 +16,9 @@
   <body
     class="bg-gradient-to-r from-[#db2777] via-[#ef4444] to-[#f97316] text-white font-mono"
   >
+    <h1 class="text-5xl font-bold text-center py-5 shadow-md border-b-2">
+      Currency Converter
+    </h1>
     <main class="min-h-screen w-full flex justify-center items-center">
       <div class="h-100 w-80 bg-slate-200 rounded-md shadow-md text-black">
         <h1 class="text-center text-2xl font-bold px-4 pt-5">
@@ -62,7 +65,7 @@
               <p class="text-[14px]">To</p>
               <div class="flex border border-slate-400 px-2 py-1 rounded-md to">
                 <img
-                  src="https://flagsapi.com/IN/flat/64.png"
+                  src="https://flagsapi.com/NP/flat/64.png"
                   class="h-6 w-6"
                 />
 
@@ -74,7 +77,7 @@
               </div>
             </div>
           </div>
-          <div class="mt-5 msg">1USD = 110INR</div>
+          <div class="mt-5 msg">1USD = 110NPR</div>
           <button
             class="bg-purple-400 px-2 py-1 text-white hover:bg-purple-500 cursor-pointer rounded-md w-full mt-6"
             id="btn"
@@ -84,6 +87,7 @@
         </form>
       </div>
     </main>
+    <!--  Foreign Exchange Rates table -->
     <section class="w-screen p-10">
       <div>
         <h1 class="text-4xl font-bold mb-4 text-center">
@@ -102,7 +106,8 @@
         </table>
       </div>
     </section>
+
     <script src="countryCode.js"></script>
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
   </body>
 </html>

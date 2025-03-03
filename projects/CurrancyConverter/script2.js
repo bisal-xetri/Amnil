@@ -96,3 +96,39 @@ btn.addEventListener("click", (evt) => {
 window.addEventListener("load", () => {
   updateExchangeRate();
 });
+
+// Calculate the exchange rate between two currencies
+// const calculateNepaliExchangeRate = async () => {
+//   const amount = parseFloat(money.value);
+//   if (isNaN(amount) || amount < 1) {
+//     money.value = 1;
+//     alert("Please enter a valid amount.");
+//     return;
+//   }
+
+//   const data = await fetchExchangeRateData(validDate());
+//   const fromCurrency = from.value;
+
+//   // Find the exchange rates for the selected currencies
+//   const fromRate = data.find((rate) => rate.currency.iso3 === fromCurrency);
+//   console.log(fromRate);
+//   const msg = document.getElementById("nprConversionResult");
+//   if (!fromRate) {
+//     msg.innerText = "Currency not found.";
+//     return;
+//   }
+
+//   // Calculate the converted amount
+
+//   const convertedAmount = (amount * fromRate.buy).toFixed(2);
+
+//   // Display the result
+//   msg.innerText = `${amount} NPR = ${convertedAmount} ${fromCurrency}`;
+// };
+
+// //
+// const nplConvertBtn = document.getElementById("nprConvertBtn");
+// nplConvertBtn.addEventListener("click", async (e) => {
+//   e.preventDefault();
+//   calculateNepaliExchangeRate();
+// });
