@@ -5,6 +5,7 @@ const btn = document.querySelector("#btn");
 const from = document.querySelector(".from select");
 const to = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
+const msg2 = document.querySelector(".msg2");
 
 const BASE_URL = `https://www.nrb.org.np/api/forex/v1/rates?`;
 
@@ -97,9 +98,11 @@ const calculateExchangeRate = async () => {
   const adjustedToRate = toRate.buy / toUnit;
 
   const convertedAmount = (amount / adjustedToRate).toFixed(2);
+  const convertedAmount1 = (amount * adjustedToRate).toFixed(2);
 
   // Display the result
   msg.innerText = `${amount} NPR  = ${convertedAmount} ${toCurrency}`;
+  msg2.innerText = `${amount} ${toCurrency}  = ${convertedAmount1} NPR`;
 };
 //displaying exchange rate in table
 const populateTable = async () => {
