@@ -13,9 +13,9 @@ for (let select of dropDown) {
     let newOption = document.createElement("option");
     newOption.innerText = currCode;
     newOption.value = currCode;
-    if (select.name === "from" && currCode === "USD") {
+    if (select.name === "from" && currCode === "NPR") {
       newOption.selected = "selected";
-    } else if (select.name === "to" && currCode === "NPR") {
+    } else if (select.name === "to" && currCode === "USD") {
       newOption.selected = "selected";
     }
     select.append(newOption);

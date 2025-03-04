@@ -13,7 +13,7 @@ const fetchExchangeRateData = async (dateValue) => {
   const URL = `${BASE_URL}from=${dateValue}&to=${dateValue}&per_page=20&page=1`;
   let response = await fetch(URL);
   let data = await response.json();
-  return data.data.payload[0].rates; // Return the rates array
+  return data.data.payload[0].rates;
 };
 
 // Validate and return the selected date
@@ -42,9 +42,14 @@ const populateDropdowns = async () => {
       let newOption = document.createElement("option");
       newOption.innerText = code;
       newOption.value = code;
-      if (select.name === "from" && code === "NPR") {
+      if (select.name === "from") {
+        const newOption = document.createElement("option");
+        newOption.innerText = "NPR";
+        newOption.value = "NPR";
         newOption.selected = "selected";
-      } else if (select.name === "to" && code === "INR") {
+        select.appendChild(newOption);
+        select.disabled = true;
+      } else if (select.name === "to" && code === "USD") {
         newOption.selected = "selected";
       }
       select.append(newOption);
@@ -81,29 +86,27 @@ const calculateExchangeRate = async () => {
   const toCurrency = to.value;
 
   // Find the exchange rates for the selected currencies
-  const fromRate = data.find((rate) => rate.currency.iso3 === fromCurrency);
   const toRate = data.find((rate) => rate.currency.iso3 === toCurrency);
-
-  if (!fromRate || !toRate) {
+  if (!toRate) {
     msg.innerText = "Currency not found.";
     return;
   }
 
   const toUnit = toRate.currency.unit || 1; // Default to 1 if unit is not provided
 
-  const adjustedToRate = toRate.buy / toUnit; // Adjust for unit (e.g., INR is 100)
+  const adjustedToRate = toRate.buy / toUnit;
 
   const convertedAmount = (amount * adjustedToRate).toFixed(2);
 
   // Display the result
   msg.innerText = `${amount} NPR  = ${convertedAmount} ${toCurrency}`;
 };
+//displaying exchange rate in table
 const populateTable = async () => {
   const dateValue = validDate();
   const data = await fetchExchangeRateData(dateValue);
   const tbody = document.getElementById("exchange-rates");
 
-  // Clear existing rows
   tbody.innerHTML = "";
 
   // Add a row for each currency
@@ -141,6 +144,5 @@ window.addEventListener("load", () => {
   populateTable();
   populateDropdowns();
   calculateExchangeRate();
-  updateFlag(from); // Set initial flag for "from" dropdown
-  updateFlag(to); // Set initial flag for "to" dropdown
+  updateFlag(to);
 });
