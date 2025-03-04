@@ -96,7 +96,7 @@ const calculateExchangeRate = async () => {
 
   const adjustedToRate = toRate.buy / toUnit;
 
-  const convertedAmount = (amount * adjustedToRate).toFixed(2);
+  const convertedAmount = (amount / adjustedToRate).toFixed(2);
 
   // Display the result
   msg.innerText = `${amount} NPR  = ${convertedAmount} ${toCurrency}`;
@@ -120,7 +120,7 @@ const populateTable = async () => {
     row.innerHTML = `
       <td class="border border-gray-300 text-center p-2 flex items-center">
         <img src="${flagUrl}" class="h-6 w-6 mr-2" />
-        ${rate.currency.name}
+        ${rate.currency.name} (${rate.currency.iso3})
       </td>
       <td class="border border-gray-300 text-center p-2">${rate.currency.unit}</td>
       <td class="border border-gray-300 text-center p-2">${rate.buy}</td>
