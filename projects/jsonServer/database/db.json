@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "5e7f",
+      "name": "userAdmin",
+      "username": "kcha",
+      "email": "shmhs@mail.com",
+      "password": "asdfghj"
+    },
+    {
+      "id": "be55",
+      "name": "Ram",
+      "username": "ram",
+      "email": "ram@gmail.com",
+      "password": "ram123@"
+    },
+    {
+      "id": "818f",
+      "name": "Rahul",
+      "username": "rahul",
+      "email": "shmhs@mail.com",
+      "password": "rahul1@"
+    }
+  ]
+}

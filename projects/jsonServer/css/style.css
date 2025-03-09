@@ -17,7 +17,6 @@ form {
   border: 1px solid black;
   padding: 10px 20px;
   border-radius: 10px;
-  background-color: aliceblue;
 }
 .title {
   text-align: center;
@@ -27,17 +26,19 @@ input {
   width: 100%;
   padding: 10px;
   outline: none;
+  border: 1px solid gray;
   border-radius: 5px;
 }
 label {
-  font-size: 17px;
+  font-size: 15px;
 }
 .error {
   color: red;
   font-size: 11px;
   display: none;
 }
-.btn-register {
+.btn {
+  width: 100%;
   border: none;
   background-color: green;
   color: white;
@@ -46,7 +47,7 @@ label {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.btn-register:hover {
+.btn:hover {
   background-color: rgb(4, 86, 4);
   transition: all ease 0.3s;
 }
