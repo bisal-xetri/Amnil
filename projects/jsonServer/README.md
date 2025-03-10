@@ -55,9 +55,9 @@ npx json-server --watch db.json --port 3001
 
 In the project root directory, run:
 
-````bash
+```bash
 npm run dev
-.```
+```
 
 ## Project Structure
 ````
