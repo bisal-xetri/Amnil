@@ -37,14 +37,6 @@ Before running the project, ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ## Setup
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/your-username/vite-vanilla-js-project.git
-cd vite-vanilla-js-project
-```
-
 ### Install Dependencies
 
 ```bash
