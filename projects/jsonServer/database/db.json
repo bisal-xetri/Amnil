@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "id": "5e7f",
-      "name": "userAdmin",
-      "username": "kcha",
-      "email": "shmhs@mail.com",
-      "password": "asdfghj"
-    },
-    {
       "id": "be55",
       "name": "Ram",
       "username": "ram",

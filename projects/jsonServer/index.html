@@ -7,9 +7,19 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="main">
-      <h1>Welcome to the Index Page</h1>
-      <button class="btn btn-logout">Logout</button>
+    <div class="index">
+      <h1 id="welcomeMessage">Welcome!</h1>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
     </div>
     <script src="./js/script.js"></script>
   </body>

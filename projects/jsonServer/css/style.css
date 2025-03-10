@@ -38,7 +38,6 @@ label {
   display: none;
 }
 .btn {
-  width: 100%;
   border: none;
   background-color: green;
   color: white;
@@ -50,4 +49,28 @@ label {
 .btn:hover {
   background-color: rgb(4, 86, 4);
   transition: all ease 0.3s;
+}
+.tbl {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid gray;
+  padding: 5px;
+}
+.btn-logout {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.btn-logout:hover {
+  background-color: rgb(175, 3, 3);
+  transition: all ease 0.3s;
+}
+.index {
+  margin: 50px;
 }

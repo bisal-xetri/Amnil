@@ -8,7 +8,10 @@ document.querySelector(".btn-login").addEventListener("click", function (e) {
     .then((response) => response.json())
     .then((users) => {
       if (users.length > 0 && users[0].password === password) {
+        // Store user details in localStorage
+        const user = users[0];
         localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(user));
         window.location.href = "index.html";
       } else {
         alert("Invalid username or password");
@@ -16,5 +19,6 @@ document.querySelector(".btn-login").addEventListener("click", function (e) {
     })
     .catch((error) => {
       console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     });
 });
