@@ -60,7 +60,7 @@ npm run dev
 ```
 
 ## Project Structure
-````
+```
 
 vite-vanilla-js-project/
 ├── public/
@@ -95,4 +95,3 @@ vite-vanilla-js-project/
 - **Vanilla JavaScript**: Plain JavaScript without any frameworks.
 - **JSON Server**: A fake REST API for prototyping and testing.
 
-```
