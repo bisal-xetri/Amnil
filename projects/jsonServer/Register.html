@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./public/css/style.css" />
   </head>
   <body>
     <div class="main">
       <div class="register">
-        <form action="">
+        <form id="registerForm">
           <h1 class="title">Register</h1>
-
           <label for="name">Name</label>
           <input type="text" name="name" id="name" placeholder="Name" />
-          <span class="error"></span><br /><br />
+          <span class="error" id="nameError"></span>
 
           <label for="username">Username</label>
           <input
@@ -23,11 +22,11 @@
             id="username"
             placeholder="Username"
           />
-          <span class="error"></span><br /><br />
+          <span class="error" id="usernameError"></span>
 
           <label for="email">Email</label>
           <input type="email" name="email" id="email" placeholder="Email" />
-          <span class="error"></span><br /><br />
+          <span class="error" id="emailError">kcha</span>
 
           <label for="password">Password</label>
           <input
@@ -36,7 +35,7 @@
             id="password"
             placeholder="Password"
           />
-          <span class="error"></span><br /><br />
+          <span class="error" id="passwordError"></span>
 
           <label for="cpassword">Confirm Password</label>
           <input
@@ -45,13 +44,20 @@
             id="cpassword"
             placeholder="Retype Password"
           />
-          <span class="error"></span><br /><br />
+          <span class="error" id="cpasswordError"></span>
 
-          <button class="btn btn-register">Register</button>
-          <p>If you have already account <a href="login.html">LogIn</a></p>
+          <button type="submit" class="btn btn-register">Register</button>
+          <p class="info">
+            If you have already account <a href="login.html">LogIn</a>
+          </p>
         </form>
       </div>
     </div>
-    <script src="./js/register.js"></script>
+    <script type="module">
+      import { registerUser } from "/src/register.js";
+      document
+        .querySelector(".btn-register")
+        .addEventListener("click", registerUser);
+    </script>
   </body>
 </html>

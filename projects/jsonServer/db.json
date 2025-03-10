@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "7bad",
+      "name": "Bishal",
+      "username": "bishal",
+      "email": "shmhs@mail.com",
+      "password": "bisal"
+    },
+    {
+      "id": "231c",
+      "name": "Bishal",
+      "username": "bishal1",
+      "email": "shmhs@mail.com",
+      "password": "bisal"
+    }
+  ]
+}
