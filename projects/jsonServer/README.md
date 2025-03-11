@@ -37,14 +37,6 @@ Before running the project, ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ## Setup
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/your-username/vite-vanilla-js-project.git
-cd vite-vanilla-js-project
-```
-
 ### Install Dependencies
 
 ```bash
@@ -63,12 +55,12 @@ npx json-server --watch db.json --port 3001
 
 In the project root directory, run:
 
-````bash
+```bash
 npm run dev
-.```
+```
 
 ## Project Structure
-````
+```
 
 vite-vanilla-js-project/
 ├── public/
@@ -103,4 +95,3 @@ vite-vanilla-js-project/
 - **Vanilla JavaScript**: Plain JavaScript without any frameworks.
 - **JSON Server**: A fake REST API for prototyping and testing.
 
-```
