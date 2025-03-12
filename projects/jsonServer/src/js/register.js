@@ -52,7 +52,7 @@ export async function registerUser(e) {
     }
 
     alert("Registration successful!");
-    window.location.href = "login.html";
+    window.location.href = "/src/pages/login.html";
   } catch (error) {
     console.error("Error:", error);
     alert(error.message);

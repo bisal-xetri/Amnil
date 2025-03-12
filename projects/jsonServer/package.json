@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "server": "json-server --watch db.json --port 3001",
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
     "preview": "vite preview"
   },
   "devDependencies": {

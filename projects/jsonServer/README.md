@@ -37,6 +37,7 @@ Before running the project, ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ## Setup
+
 ### Install Dependencies
 
 ```bash
@@ -59,28 +60,8 @@ In the project root directory, run:
 npm run dev
 ```
 
-## Project Structure
-```
-
-vite-vanilla-js-project/
-├── public/
-│ └── css/
-│ └── style.css
-├── src/
-│ ├── register.js
-│ ├── login.js
-│ └── script.js
-├── index.html
-├── login.html
-├── Register.html
-├── db.json
-├── package.json
-├── vite.config.js
-└── README.md
-
-```
-
 ## Key Files
+
 - `index.html`: The main page that displays user details after login.
 - `login.html`: The login page where users can log in.
 - `Register.html`: The registration page where users can create an account.
@@ -91,7 +72,7 @@ vite-vanilla-js-project/
 - `vite.config.js`: Configuration file for Vite.
 
 ## Technologies Used
+
 - **Vite**: A fast build tool for modern web development.
 - **Vanilla JavaScript**: Plain JavaScript without any frameworks.
 - **JSON Server**: A fake REST API for prototyping and testing.
-

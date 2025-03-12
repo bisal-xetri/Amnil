@@ -13,6 +13,13 @@
       "username": "bishal1",
       "email": "shmhs@mail.com",
       "password": "bisal"
+    },
+    {
+      "id": "f023",
+      "name": "Ram",
+      "username": "ram",
+      "email": "shmhs@mail.com",
+      "password": "ram"
     }
   ]
 }

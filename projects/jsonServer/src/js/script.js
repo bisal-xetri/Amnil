@@ -1,6 +1,6 @@
 // Check if user is logged in
 if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "login.html";
+  window.location.href = "/src/pages/login.html";
 }
 
 // Retrieve user details from localStorage
@@ -18,7 +18,7 @@ if (user) {
         <td>${user.name}</td>
         <td>${user.username}</td>
         <td>${user.email}</td>
-        <td><button class="btn-logout">Logout</button></td>
+        <td><button type="submit" class="btn-logout">Logout</button></td>
       </tr>
     `;
 } else {
@@ -26,9 +26,14 @@ if (user) {
     "User details not found.";
 }
 
-// Logout functionality
-document.querySelector(".btn-logout").addEventListener("click", function () {
-  localStorage.removeItem("loggedIn");
-  localStorage.removeItem("user");
-  window.location.href = "login.html";
-});
+// Use event delegation to handle logout button click
+document
+  .getElementById("userTableBody")
+  .addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("btn-logout")) {
+      // Logout functionality
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("user");
+      window.location.href = "/src/pages/login.html";
+    }
+  });
