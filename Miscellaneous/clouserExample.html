@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure Example</title>
+  </head>
+  <body>
+    <button id="red">Red</button>
+    <button id="orange">Orange</button>
+    <script>
+      //example
+      // function makeFunc() {
+      //   const text = "Hello";
+      //   function displayText() {
+      //     console.log(text);
+      //   }
+      //   return displayText;
+      // }
+      // const myFunc = makeFunc();
+      // myFunc();
+      // document.getElementById("red").onclick = function () {
+      //   document.body.style.backgroundColor = `red`;
+      // };
+      // document.getElementById("orange").onclick = function () {
+      //   document.body.style.backgroundColor = `orange`;
+      // };
+      document.getElementById("orange").onclick = clickHandler("orange");
+      document.getElementById("red").onclick = clickHandler("red");
+      function clickHandler(color) {
+        // document.body.style.backgroundColor = `${color}`;
+        return function () {
+          document.body.style.backgroundColor = `${color}`;
+        };
+      }
+    </script>
+  </body>
+</html>
