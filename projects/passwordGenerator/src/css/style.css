@@ -27,6 +27,13 @@ h2 {
 
 input[type="checkbox"] {
   margin-right: 0;
+  cursor: pointer;
+}
+input[type="number"] {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 3px 2px;
 }
 
 .main {
@@ -49,6 +56,7 @@ input[type="checkbox"] {
   padding: 12px 10px;
   height: 50px;
   width: 100%;
+  border-radius: 5px;
 }
 
 .result-container #result {
@@ -72,8 +80,12 @@ input[type="checkbox"] {
   font-size: 16px;
   padding: 8px 12px;
   background-color: #3b3b98;
+  border-radius: 10px;
 }
-
+.btn:hover {
+  background-color: #0a0a5c;
+  transition: all ease 0.3s;
+}
 .btn-large {
   display: block;
   width: 100%;

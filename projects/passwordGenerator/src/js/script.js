@@ -17,7 +17,16 @@ const randomFunc = {
 
 // Generate event listener
 generateElem.addEventListener("click", () => {
-  const length = +lengthElem.value;
+  let length = +lengthElem.value;
+  // Ensure password length is within the valid range
+  if (length < 4) {
+    length = 4;
+    lengthElem.value = 4; // Reset input field to minimum allowed value
+  } else if (length > 20) {
+    length = 20;
+    lengthElem.value = 20; // Reset input field to maximum allowed value
+  }
+
   const hasLower = lowerCaseElem.checked;
   const hasUpper = upperCaseElem.checked;
   const hasSymbol = symbolElem.checked;
@@ -43,7 +52,7 @@ function generatePassword(length, lower, upper, number, symbol) {
     return "Select at least one option!";
   }
 
-  for (let i = 0; i < length; i++) {
+  while (generatedPassword.length < length) {
     const randomType = typesArr[Math.floor(Math.random() * typesArr.length)];
     const funcName = Object.keys(randomType)[0];
     generatedPassword += randomFunc[funcName]();
