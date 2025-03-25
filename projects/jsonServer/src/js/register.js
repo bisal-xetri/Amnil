@@ -39,13 +39,16 @@ export async function registerUser(e) {
     }
 
     // Register the user
-    const response = await fetch("http://localhost:3001/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+    const response = await fetch(
+      "https://jsonserver-1-etxz.onrender.com/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Registration failed. Please try again.");
@@ -114,7 +117,7 @@ function validateEmail(email) {
 async function checkIfUserExists(username, email) {
   try {
     const response = await fetch(
-      `http://localhost:3001/users?username=${username}&email=${email}`
+      `https://jsonserver-1-etxz.onrender.com/users?username=${username}&email=${email}`
     );
     const data = await response.json();
     return data;

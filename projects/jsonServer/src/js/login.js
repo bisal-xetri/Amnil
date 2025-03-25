@@ -10,7 +10,7 @@ export async function loginUser(e) {
 
   try {
     const response = await fetch(
-      `http://localhost:3001/users?username=${username}`
+      `https://jsonserver-1-etxz.onrender.com/users?username=${username}`
     );
     const users = await response.json();
 
