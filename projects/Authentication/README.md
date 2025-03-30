@@ -14,31 +14,9 @@ This is a simple React authentication app that allows users to register, log in,
 
 This project uses the following API for authentication:
 
-🔗 **API Endpoint:** [https://jsonserver-1-etxz.onrender.com/users](https://jsonserver-1-etxz.onrender.com/users)
-
-## Project Structure
-
-```
-/ Authentication-App
-│── /src
-│   │── /components
-│   │   │── Login.jsx
-│   │   │── Register.jsx
-│   │   │── Home.jsx
-│   │   │── PrivateRoute.jsx
-│   │── App.jsx
-│   │── index.js
-│── /public
-│── /styles
-│── README.md
-```
+🔗 **API Endpoint:** [jsonServer](https://jsonserver-1-etxz.onrender.com/users)
 
 ## Installation & Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/bisal-xetri/amnil.git
-   ```
 
 ### Install Dependencies
 
