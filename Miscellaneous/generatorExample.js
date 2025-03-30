@@ -15,8 +15,7 @@ console.log(gen.next().done);
 function* infiniteCounter() {
   let i = 1;
   while (true) {
-    yield;
-    i++;
+    yield i++;
   }
 }
 
