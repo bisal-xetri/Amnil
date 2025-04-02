@@ -13,6 +13,10 @@ function Register({ onRegister, navigateTo }) {
     setError("");
 
     // Validate passwords match
+    if (password < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
